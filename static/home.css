@@ -1,0 +1,21 @@
+.t-header{
+    
+    display: inline-block;
+
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 16px;
+}
+
