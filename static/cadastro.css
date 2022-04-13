@@ -10,10 +10,7 @@ html, body{
     display: flex;
 }
 
-.t-banner{
-    font-family: 'Courier New', Courier, monospace;
-    margin-left: 5%;
-}
+
 
 .wrapper{
     margin-top: 10vw;
@@ -37,4 +34,11 @@ button{
     display:flex;
     justify-content: center;
     margin: 2%;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 5%;
 }
