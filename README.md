@@ -11,7 +11,7 @@ Itens: Bebidas
 
 Categorias: Alcoólica, Quentes, Geladas
 Produtos:
-    Alcoólicas - Velho Barrero, Askov, Corote
-    Quentes - Café coado, Capuccino, Chá Matte
-    Geladas - Coca-cola, Fanta Uva, Pepsi Twist
+    Cerveja - Skoll, Colorado, Heineken
+    Vinho - Campo Largo, Carnivor, Gato Preto
+    Destilado - Askov, Corote, Velho Barreiro
     
