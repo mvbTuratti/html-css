@@ -35,3 +35,7 @@ html, body{
     font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
 
 }
+
+img{
+    margin: 0px;
+}
