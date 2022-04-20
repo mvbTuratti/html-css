@@ -28,7 +28,7 @@ label{
 .wrapper .body{
     min-width: 350px;
     background-image: repeating-linear-gradient(rgb(161, 66, 37), rgb(161, 66, 37,0.9));
-    border: solid 1px black;
+    border: solid 1px rgb(102, 102, 102);
     border-radius: 10px;
     box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);
     justify-content: center;
@@ -36,7 +36,7 @@ label{
 }
 
 input{
-    border: solid 1px black;
+    border: solid 1px rgb(102, 102, 102);
     border-radius: 4px;
 }
 
@@ -50,7 +50,7 @@ button{
     width: 10em;
     margin-top: 1em;
     line-height: 1.7em;
-    margin-left: auto;
+    
     display: flex;
     justify-content: center;
 }
@@ -89,4 +89,10 @@ p.login{
     font-size:x-small;
     color: whitesmoke;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+@-moz-document url-prefix() {
+    button{
+        line-height: 1em;
+    }
+    
 }
