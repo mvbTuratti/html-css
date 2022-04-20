@@ -25,24 +25,34 @@ label{
 }
 
 .wrapper .body{
-    
+    min-width: 350px;
     background-color: #a0865a;
     border: solid 1px black;
     border-radius: 10px;
-    box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);;
+    box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    border: solid 1px black;
+    border-radius: 4px;
 }
 
 table{
     margin: 2%;
+    
 }
+
 button{
-    display:flex;
-    justify-content: center;
-    margin: 2%;
     height: 2em;
     width: 10em;
-    text-align: center;
+    margin-top: 1em;
     line-height: 1.7em;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    
 }
 
 
@@ -50,10 +60,26 @@ img{
     margin: 0px;
 }
 
+#centering{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.login{
+.splitter{
     justify-content: center;
     display: flex;
+    align-items: center;
+}
+
+.splitter a{
+    padding: 1em;
+}
+.filler{
+    flex-grow: 1;
+}
+
+.login{  
     font-size:x-small;
     text-shadow: rgba(255, 255, 255, 0.87) 1px 1px 2px;
 }
