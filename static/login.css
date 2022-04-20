@@ -1,5 +1,5 @@
 html, body{
-    background-color: #e3dac9;
+    background-color: rgb(161, 66, 37,0.2);
     margin: 0px;
     font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
 
@@ -13,7 +13,7 @@ label{
 }
 
 .t-header{
-    background-color:#6f5c39 ;
+    background-image: repeating-linear-gradient(rgba(105, 44, 44, 1), rgb(161, 66, 37));
     display: flex;
 }
 
@@ -26,7 +26,7 @@ label{
 
 .wrapper .body{
     min-width: 350px;
-    background-color: #a0865a;
+    background-image: repeating-linear-gradient(rgb(161, 66, 37), rgb(161, 66, 37,0.9));
     border: solid 1px black;
     border-radius: 10px;
     box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);
@@ -52,12 +52,11 @@ button{
     margin-left: auto;
     display: flex;
     justify-content: center;
-    
 }
 
 
-img{
-    margin: 0px;
+.t-header object{
+    padding-left: 1em;
 }
 
 #centering{
@@ -79,7 +78,14 @@ img{
     flex-grow: 1;
 }
 
-.login{  
+a.login{  
     font-size:x-small;
+    
     text-shadow: rgba(255, 255, 255, 0.87) 1px 1px 2px;
+}
+
+p.login{
+    font-size:x-small;
+    color: whitesmoke;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
