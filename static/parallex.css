@@ -129,7 +129,7 @@ mas não indicamos qual será a imagem.
 
 .group{
     margin-top: 7em;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     display: flex;
     justify-content: space-evenly;
 
@@ -141,9 +141,4 @@ a{
     text-shadow: 0 1 5px #000;  
     font-family:  Helvetica, Arial, sans-serif;
     font-size: 2em;
-}
-
-.centering{
-    display: flex;
-    justify-content: center;
 }
