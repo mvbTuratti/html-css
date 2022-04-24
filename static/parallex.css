@@ -1,5 +1,5 @@
 /* Esse código é só para tirar as margens */
-body,html{margin:0;padding:0;background-image: repeating-linear-gradient(rgba(105, 44, 44, 0.01), rgb(161, 66, 37), rgb(27, 17, 17));}
+body,html{margin:0;padding:0;background-image: repeating-linear-gradient(rgba(105, 44, 44, 0.7), rgb(161, 66, 37), rgb(27, 17, 17));}
 
 .wrapper {
   /* O elemento precisa ter uma altura definida para o efeito
@@ -28,7 +28,7 @@ body,html{margin:0;padding:0;background-image: repeating-linear-gradient(rgba(10
   transform-style: preserve-3d;
 }
 .logo {
-    transform: translateZ(-0.75px) scale(2);
+    transform: translateZ(-0.6px) scale(1.75);
 }
 .section {
   /* Indicamos "relative" para depois podermos
