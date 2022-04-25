@@ -1,0 +1,25 @@
+html, body{
+    background-color: rgb(161, 66, 37,0.2);
+    margin: 0px;
+    height: 100vh; /* Necessário no mozilla, relacionado com o .wrapper 10vw */
+    font-family:  Helvetica, Arial, sans-serif;
+}
+
+.t-header{
+    background-image: repeating-linear-gradient(rgba(105, 44, 44, 1), rgb(161, 66, 37));
+    display: flex;
+}
+
+.wrapper{
+    margin-top: 10vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+@-moz-document url-prefix() {
+    button{
+        line-height: 1em;
+    }
+    
+}

@@ -1,5 +1,10 @@
 /* Esse código é só para tirar as margens */
-body,html{margin:0;padding:0;background-image: repeating-linear-gradient(rgba(105, 44, 44, 0.7), rgb(161, 66, 37), rgb(27, 17, 17));}
+body,html{
+  margin:0;
+  padding:0;
+  background-image: repeating-linear-gradient(rgba(105, 44, 44, 0.7), rgb(161, 66, 37), rgb(27, 17, 17));
+  font-family:  Helvetica, Arial, sans-serif;
+}
 
 .wrapper {
   /* O elemento precisa ter uma altura definida para o efeito
@@ -107,7 +112,6 @@ body,html{margin:0;padding:0;background-image: repeating-linear-gradient(rgba(10
   text-shadow: 0 0 5px #000;
   font-size: 3em;
   text-align: center;
-  font-family:  Helvetica, Arial, sans-serif;
 }
 
 /* Em nosso pseudo-elemento, configuramos a imagem de fundo,
@@ -139,6 +143,5 @@ a{
     text-decoration: none;
     color: rgba(252, 252, 252, 0.8);
     text-shadow: 0 1 5px #000;  
-    font-family:  Helvetica, Arial, sans-serif;
     font-size: 2em;
 }
