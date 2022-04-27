@@ -145,3 +145,15 @@ a{
     text-shadow: 0 1 5px #000;  
     font-size: 2em;
 }
+
+@media (max-width: 800px){
+  .group{
+    margin-top: 10em;
+    display: flex;
+    flex-direction: column;
+  }
+  a{
+    display: flex;
+    justify-content: center;
+  }
+}
