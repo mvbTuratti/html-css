@@ -8,7 +8,10 @@
     <title>Addega</title>
 </head>
 <body>
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Menu</button> 
+
     <main class="wrapper">
+
         <section class="section bg1">
             <p class="text" >Uma nova experiência de bebidas online como nunca vista anteriormente</p>
             
@@ -32,4 +35,12 @@
       </main>
       
 </body>
+<script>
+  //Get the button:
+  const mybutton = document.getElementById("myBtn");
+  const pageBottom = document.querySelector(".group")
+  function topFunction() {
+    pageBottom.scrollIntoView()
+  } 
+</script>
 </html>
