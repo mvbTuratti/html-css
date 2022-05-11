@@ -2,8 +2,7 @@ html, body{
     background-color: rgb(161, 66, 37,0.2);
     margin: 0px;
     height: 100vh; /* Necessário no mozilla, relacionado com o .wrapper 10vw */
-    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
-
+    font-family:  Helvetica, Arial, sans-serif;
 }
 
 label{
@@ -66,15 +65,6 @@ button{
     align-items: center;
 }
 
-.splitter{
-    justify-content: center;
-    display: flex;
-    align-items: center;
-}
-
-.splitter a{
-    padding: 1em;
-}
 .filler{
     flex-grow: 1;
 }
