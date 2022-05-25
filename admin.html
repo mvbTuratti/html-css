@@ -49,9 +49,21 @@
             xhttp.send()
         }
 
+        function getProdutos() {
+            let url = path + "&f=json&c=produto&t=listar";
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    constructCards(JSON.parse(xhttp.responseText).dados);
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send()
+        }
+
         function constructCards(jsonCards) {
             cleanUpCanvas();
-            
+            jsonCards = jsonCards || [];
             const catgs = document.getElementsByClassName("categorias")[0];
             while (catgs.firstChild) {
                 catgs.removeChild(catgs.lastChild);
@@ -77,7 +89,9 @@
                 case "listar-categorias":
                     getCategorias();
                     break;
-            
+                case "listar-produtos":
+                    getProdutos();
+                    break;
                 default:
                     break;
             }
