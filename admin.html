@@ -14,7 +14,7 @@
         <h2>CRUD</h2>
         <div class="body">
             <div class="operation">
-                <select name="op" id="op">
+                <select name="op" id="op" onchange="changeControl(this.value)">
                     <option value="listar-categorias">Listar Categorias</option>
                     <option value="listar-produtos">Listar Produtos</option>
                     <option value="criar-categoria">Criar Categorias</option>
@@ -27,10 +27,6 @@
             </div>
             <div class="body-results">
                 <div class="categorias">
-                    <div class="cards">
-                        <div class="id"><b>Id: xxx</b></div>
-                        <div class="nome">Nome: xxx</div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -40,9 +36,61 @@
 </body>
     <script>
         const path = "http://loja.buiar.com/?key=e257vc";
+        getCategorias();
         function getCategorias() {
             let url = path + "&f=json&c=categoria&t=listar";
-
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    constructCards(JSON.parse(xhttp.responseText).dados);
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send()
         }
+
+        function constructCards(jsonCards) {
+            cleanUpCanvas();
+            
+            const catgs = document.getElementsByClassName("categorias")[0];
+            while (catgs.firstChild) {
+                catgs.removeChild(catgs.lastChild);
+            }
+            jsonCards.forEach(element => {
+                let card = document.createElement('div');
+                card.classList.add("cards");
+                let id = document.createElement('div');
+                id.classList.add("id");
+                id.innerHTML = `<b>${element.id}</b>`
+                card.appendChild(id);
+                let nome = document.createElement('div');
+                nome.classList.add("nome");
+                nome.innerHTML = `${element.nome}`
+                card.appendChild(nome);
+                catgs.appendChild(card);
+            });
+            catgs.style.display = "flex";
+        }
+
+        function changeControl(param) {
+            switch (param) {
+                case "listar-categorias":
+                    getCategorias();
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+
+        function cleanUpCanvas() {
+            const catgs = document.getElementsByClassName("body-results")[0]
+            const children = catgs.children;
+            for (let index = 0; index < children.length; index++) {
+                const element = children[index];
+                element.style.display = "none";
+            }
+        }
+
     </script>
 </html>

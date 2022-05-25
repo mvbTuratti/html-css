@@ -2,6 +2,7 @@ html, body{
     background-color: rgb(161, 66, 37,0.2);
     margin: 0px;
     font-family:  Helvetica, Arial, sans-serif;
+    height: 100vh;
 }
 
 img {
@@ -34,6 +35,8 @@ img {
     justify-content: center;
     align-items: center;
     overflow: scroll;
+    overflow-y: hidden; 
+    overflow-x: hidden; 
 }
 
 .operation{
@@ -50,6 +53,7 @@ img {
     align-content: space-around;
     justify-content: space-evenly;
     margin: 2em;
+    display: none;
 }
 
 .cards {
