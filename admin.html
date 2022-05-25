@@ -36,6 +36,7 @@
 </body>
     <script>
         const path = "http://loja.buiar.com/?key=e257vc";
+        document.getElementById("op").selectedIndex = "0"
         getCategorias();
         function getCategorias() {
             let url = path + "&f=json&c=categoria&t=listar";
@@ -69,17 +70,7 @@
                 catgs.removeChild(catgs.lastChild);
             }
             jsonCards.forEach(element => {
-                let card = document.createElement('div');
-                card.classList.add("cards");
-                let id = document.createElement('div');
-                id.classList.add("id");
-                id.innerHTML = `<b>${element.id}</b>`
-                card.appendChild(id);
-                let nome = document.createElement('div');
-                nome.classList.add("nome");
-                nome.innerHTML = `${element.nome}`
-                card.appendChild(nome);
-                catgs.appendChild(card);
+                createCard(element, catgs);
             });
             catgs.style.display = "flex";
         }
@@ -97,6 +88,19 @@
             }
         }
 
+        function createCard(element, catgs) {
+            let card = document.createElement('div');
+            card.classList.add("cards");
+            let id = document.createElement('div');
+            id.classList.add("id");
+            id.innerHTML = `<b>${element.id}</b>`
+            card.appendChild(id);
+            let nome = document.createElement('div');
+            nome.classList.add("nome");
+            nome.innerHTML = `${element.nome}`
+            card.appendChild(nome);
+            catgs.appendChild(card);
+        }
         function cleanUpCanvas() {
             const catgs = document.getElementsByClassName("body-results")[0]
             const children = catgs.children;
