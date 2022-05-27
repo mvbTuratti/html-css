@@ -30,7 +30,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
     
 </body>
@@ -40,29 +39,23 @@
         getCategorias();
         function getCategorias() {
             let url = path + "&f=json&c=categoria&t=listar";
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    constructCards(JSON.parse(xhttp.responseText).dados);
-                }
-            };
-            xhttp.open("GET", url, true);
-            xhttp.send()
+            fetch(url).then(r => r.json()).then(d => constructCards(d.dados));
         }
 
         function getProdutos() {
-            let url = path + "&f=json&c=produto&t=listar";
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    constructCards(JSON.parse(xhttp.responseText).dados);
+            let urlprod = path + "&f=json&c=produto&t=listar";
+            let urlcat = path + "&f=json&c=categoria&t=listar";
+            fetch(urlcat).then(resp => resp.json()).then(
+                data => {
+                    const dados = data.dados;
+                    fetch(urlprod).then(r => r.json()).then(d => {
+                        constructCards(d.dados, dados);
+                    })
                 }
-            };
-            xhttp.open("GET", url, true);
-            xhttp.send()
+            );
         }
 
-        function constructCards(jsonCards) {
+        function constructCards(jsonCards, jsonCategories = null) {
             cleanUpCanvas();
             jsonCards = jsonCards || [];
             const catgs = document.getElementsByClassName("categorias")[0];
@@ -70,7 +63,11 @@
                 catgs.removeChild(catgs.lastChild);
             }
             jsonCards.forEach(element => {
-                createCard(element, catgs);
+                if (jsonCategories){
+                    createProductCard(jsonCategories, element, catgs);
+                } else{
+                    createCard(element, catgs);
+                }
             });
             catgs.style.display = "flex";
         }
@@ -101,6 +98,52 @@
             card.appendChild(nome);
             catgs.appendChild(card);
         }
+
+        function createProductCard(categorias, elemento, div){
+            let divs = []
+            let card = document.createElement('div');
+            card.classList.add("cards");
+            let id = document.createElement('div');
+            id.classList.add("id");
+            id.innerHTML = `<b>${elemento.id}</b>`
+            divs.push(id);
+            let dimg = document.createElement('div');
+            dimg.classList.add("images");
+            let img = new Image(50,50);
+            img.src = elemento.imagem;
+            img.alt = `Imagem do produto: ${elemento.nome}`;
+            dimg.appendChild(img);
+            divs.push(dimg);
+            let nome = document.createElement('div');
+            nome.classList.add("products");
+            nome.innerHTML = `${elemento.nome}`
+            divs.push(nome);
+            categorias.forEach(c => {
+                if (c.id === elemento.categoria){
+                    let cat = document.createElement('div');
+                    cat.classList.add("products");
+                    cat.innerHTML = `Categoria - ${c.nome}`
+                    divs.push(cat);
+                    
+                }
+            })
+            let preco = document.createElement('div');
+            preco.classList.add("products");
+            let money = parseFloat(elemento.preco).toLocaleString('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL',
+                        })
+            preco.innerHTML = `Preço - ${money}`;
+            divs.push(preco);
+            let peso = document.createElement('div');
+            peso.classList.add("products");
+            peso.innerHTML = `Peso - ${elemento.peso}kg`
+            divs.push(peso);
+            divs.forEach(d => card.appendChild(d));
+            div.appendChild(card);
+        }
+
+
         function cleanUpCanvas() {
             const catgs = document.getElementsByClassName("body-results")[0]
             const children = catgs.children;

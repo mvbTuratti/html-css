@@ -65,18 +65,34 @@ img {
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 1px 12px rgba(0,0,0,0.25);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: scroll;
+    overflow-y: hidden; 
+    overflow-x: hidden; 
 }
 
 .cards .id{
     text-align: center;
     margin-top: 1em;
-    font-size: x-large;
+    font-size: large;
 }
 
 .cards .nome{
     text-align: center;
     margin-top: 30%;
     font-size: large;
+}
+
+.cards .products {
+    text-align: center;
+    margin-top: 2%;
+    font-size: small;
+}
+
+.cards .images{
+    height: 75px;
+    width: 75px;
+    margin-left: 26.5%;
+    margin-bottom: 5%;
 }
 @-moz-document url-prefix() {
     button{
