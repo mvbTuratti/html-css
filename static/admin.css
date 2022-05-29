@@ -46,6 +46,13 @@ img {
     margin: 1em;
 }
 
+.create{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: none;
+}
+
 .categorias{
     display: flex;
     flex-direction: row;

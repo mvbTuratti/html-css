@@ -28,6 +28,8 @@
             <div class="body-results">
                 <div class="categorias">
                 </div>
+                <div class="create">
+                </div>
             </div>
         </div>
     </div>
@@ -80,11 +82,23 @@
                 case "listar-produtos":
                     getProdutos();
                     break;
+                case "criar-categoria":
+                    createCategory();
+                    break;
                 default:
                     break;
             }
         }
 
+        function createCategory() {
+            cleanUpCanvas();
+            const catgs = document.getElementsByClassName("create")[0];
+            while (catgs.firstChild) {
+                catgs.removeChild(catgs.lastChild);
+            }
+            catgs.innerHTML = "AAAA"
+            catgs.style.display = "flex";
+        }
         function createCard(element, catgs) {
             let card = document.createElement('div');
             card.classList.add("cards");
