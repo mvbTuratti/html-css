@@ -29,6 +29,34 @@
                 <div class="categorias">
                 </div>
                 <div class="create">
+                    <div class="formulario">
+                        <form action="javascript:cadastroCategoria()">
+                            <label for="one">Nome da categoria:</label> <input id="one" type="text" name="nome" placeholder="Categoria" required/> <br>
+                            <input class="submit" type="submit"/>
+                        </form>
+                    </div>
+                </div>
+                <div class="produto-create">
+                    <div class="produto-form">
+                        <form action="javascript:cadastroProduto()">
+                            <label for="nProduto">Nome do produto:</label>
+                            <input type="text" name="nProduto" id="nProduto" placeholder="produto" required>
+                            <br>
+                            <label for="nCodigo">Código do produto:</label>
+                            <input type="number" name="nCodigo" id="nCodigo" required>
+                            <br>
+                            <label for="desc">Descrição do produto:</label>
+                            <input type="text" name="desc" id="desc" placeholder="descrição" required>
+                            <br>
+                            <label for="peso">Peso do produto:</label>
+                            <input type="number" name="peso" id="peso" required>
+                            <br>
+                            <label for="preço">Preço do produto:</label>
+                            <input type="number" name="preço" id="preço" required>
+                            <br>
+                            <input class="submit" type="submit">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,19 +113,43 @@
                 case "criar-categoria":
                     createCategory();
                     break;
+                case "criar-produto":
+                    createProduct();
+                    break;
                 default:
                     break;
             }
         }
 
+        function createProduct() {
+            cleanUpCanvas();
+            const catgs = document.getElementsByClassName("produto-create")[0];
+            let urlcat = path + "&f=json&c=categoria&t=listar";
+            fetch(urlcat).then(r => r.json())
+            .then(data => {
+                const dados = data.dados;
+                    
+            })
+            catgs.style.display = "flex";
+        }
         function createCategory() {
             cleanUpCanvas();
             const catgs = document.getElementsByClassName("create")[0];
-            while (catgs.firstChild) {
-                catgs.removeChild(catgs.lastChild);
-            }
-            catgs.innerHTML = "AAAA"
+            
             catgs.style.display = "flex";
+        }
+
+        function cadastroCategoria() {
+            const doc = document.getElementById("one");
+            fetch(path + "&f=json&c=categoria&t=inserir&nome=" + doc.value)
+            .then(resp => resp.json())
+            .then(d => {
+                if (d.erro === 0){
+                    alert("Categoria cadastrada com sucesso!");
+                } else{
+                    alert("Erro ao cadastrar");
+                }
+            });
         }
         function createCard(element, catgs) {
             let card = document.createElement('div');
