@@ -39,23 +39,33 @@
                 <div class="produto-create">
                     <div class="produto-form">
                         <form action="javascript:cadastroProduto()">
-                            <label for="nProduto">Nome do produto:</label>
-                            <input type="text" name="nProduto" id="nProduto" placeholder="produto" required>
+                            <label for="nomep">Nome do produto:</label>
+                            <input class="input-produto" type="text" name="nomep" id="nomep" placeholder="produto" required>
                             <br>
-                            <label for="nCodigo">Código do produto:</label>
-                            <input type="number" name="nCodigo" id="nCodigo" required>
+                            <label for="categoriap">Categoria do produto:</label>
+                            <select class="input-produto" name="categoriap" id="categoriap" required>
+
+                            </select>
                             <br>
-                            <label for="desc">Descrição do produto:</label>
-                            <input type="text" name="desc" id="desc" placeholder="descrição" required>
+                            <label for="codigop">Código do produto:</label>
+                            <input class="input-produto" type="number" name="codigop" id="codigop" required>
                             <br>
-                            <label for="peso">Peso do produto:</label>
-                            <input type="number" name="peso" id="peso" required>
+                            <label for="descricaop">Descrição do produto:</label>
+                            <input class="input-produto" type="text" name="descricaop" id="descricaop" placeholder="descrição" required>
                             <br>
-                            <label for="preço">Preço do produto:</label>
-                            <input type="number" name="preço" id="preço" required>
+                            <label for="pesop">Peso do produto:</label>
+                            <input class="input-produto" type="number" name="pesop" id="pesop" required>
+                            <br>
+                            <label for="precop">Preço do produto:</label>
+                            <input class="input-produto" type="number" name="precop" id="precop" required>
                             <br>
                             <input class="submit" type="submit">
                         </form>
+                    </div>
+                </div>
+                <div class="produto-remove">
+                    <div class="formulario">
+
                     </div>
                 </div>
             </div>
@@ -116,6 +126,9 @@
                 case "criar-produto":
                     createProduct();
                     break;
+                case "deletar-produto":
+                    deleteProduct();
+                    break;
                 default:
                     break;
             }
@@ -128,7 +141,13 @@
             fetch(urlcat).then(r => r.json())
             .then(data => {
                 const dados = data.dados;
-                    
+                const selec = document.getElementById("categoriap");
+                dados.forEach(e => {
+                    let div = document.createElement('option');
+                    div.innerHTML = e.nome;
+                    div.value = e.nome;
+                    selec.appendChild(div);
+                })
             })
             catgs.style.display = "flex";
         }
@@ -150,6 +169,41 @@
                     alert("Erro ao cadastrar");
                 }
             });
+        }
+        function cadastroProduto() {
+            const doc = document.getElementById("one");
+            fetch(path + "&f=json&c=categoria&t=listar")
+            .then(resp => resp.json())
+            .then(d => {
+                let categoriaId = 0;
+                let str = ""
+                document.querySelectorAll('.input-produto').forEach(item =>{
+                    let size = item.id.length;
+                    str += "&" + item.id.substring(0, size - 1);
+                    if (item.id === "categoria"){
+                        d.dados.forEach(i => {
+                            if (i.nome === item.value){
+                                str += i.id;
+                            }
+                        })
+                    } else{
+                        str += item.value;
+                    }
+                })
+                fetch(path + "&c=produto&t=inserir" + str).then(r => r.json()).then(resultado => {
+                    if (resultado.erro === 0){
+                        alert("Categoria cadastrada com sucesso!");
+                    } else{
+                        alert("Erro ao cadastrar");
+                    }
+                })
+            });
+        }
+        function deleteProduct() {
+            cleanUpCanvas();
+            const catgs = document.getElementsByClassName("produto-remove")[0];
+            
+            catgs.style.display = "flex";
         }
         function createCard(element, catgs) {
             let card = document.createElement('div');
