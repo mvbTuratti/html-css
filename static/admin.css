@@ -48,7 +48,7 @@ img {
     margin: 1em;
 }
 
-.create{
+.create, .produto-remove, .categoria-remove{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

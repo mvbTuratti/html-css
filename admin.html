@@ -63,9 +63,30 @@
                         </form>
                     </div>
                 </div>
+                <div class="categoria-remove">
+                    <div class="formulario">
+                        <form action="javascript:deletarCategoria()">
+                            <label for="d-categoria">Escolha uma categoria para remover:</label> 
+                            <br>
+                            <select class="delete-categoria" name="d-categoria" id="d-categoria" required>
+
+                            </select>
+                            <br>
+                            <input class="submit" type="submit"/>
+                        </form>
+                    </div>
+                </div>
                 <div class="produto-remove">
                     <div class="formulario">
+                        <form action="javascript:deletarProduto()">
+                            <label for="d-produto">Escolha um produto para remover:</label> 
+                            <br>
+                            <select class="delete-produto" name="d-produto" id="d-produto" required>
 
+                            </select>
+                            <br>
+                            <input class="submit" type="submit"/>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -126,6 +147,9 @@
                 case "criar-produto":
                     createProduct();
                     break;
+                case "deletar-categoria":
+                    deleteCategory();
+                    break;
                 case "deletar-produto":
                     deleteProduct();
                     break;
@@ -134,23 +158,7 @@
             }
         }
 
-        function createProduct() {
-            cleanUpCanvas();
-            const catgs = document.getElementsByClassName("produto-create")[0];
-            let urlcat = path + "&f=json&c=categoria&t=listar";
-            fetch(urlcat).then(r => r.json())
-            .then(data => {
-                const dados = data.dados;
-                const selec = document.getElementById("categoriap");
-                dados.forEach(e => {
-                    let div = document.createElement('option');
-                    div.innerHTML = e.nome;
-                    div.value = e.nome;
-                    selec.appendChild(div);
-                })
-            })
-            catgs.style.display = "flex";
-        }
+        
         function createCategory() {
             cleanUpCanvas();
             const catgs = document.getElementsByClassName("create")[0];
@@ -170,6 +178,23 @@
                 }
             });
         }
+        function createProduct() {
+            cleanUpCanvas();
+            const catgs = document.getElementsByClassName("produto-create")[0];
+            let urlcat = path + "&f=json&c=categoria&t=listar";
+            fetch(urlcat).then(r => r.json())
+            .then(data => {
+                const dados = data.dados;
+                const selec = document.getElementById("categoriap");
+                dados.forEach(e => {
+                    let div = document.createElement('option');
+                    div.innerHTML = e.nome;
+                    div.value = e.id;
+                    selec.appendChild(div);
+                })
+            })
+            catgs.style.display = "flex";
+        }
         function cadastroProduto() {
             const doc = document.getElementById("one");
             fetch(path + "&f=json&c=categoria&t=listar")
@@ -179,18 +204,9 @@
                 let str = ""
                 document.querySelectorAll('.input-produto').forEach(item =>{
                     let size = item.id.length;
-                    str += "&" + item.id.substring(0, size - 1);
-                    if (item.id === "categoria"){
-                        d.dados.forEach(i => {
-                            if (i.nome === item.value){
-                                str += i.id;
-                            }
-                        })
-                    } else{
-                        str += item.value;
-                    }
+                    str += "&" + item.id.substring(0, size - 1) + "=" + item.value;
                 })
-                fetch(path + "&c=produto&t=inserir" + str).then(r => r.json()).then(resultado => {
+                fetch(path + "&f=json&c=produto&t=inserir" + str).then(r => r.json()).then(resultado => {
                     if (resultado.erro === 0){
                         alert("Categoria cadastrada com sucesso!");
                     } else{
@@ -199,11 +215,71 @@
                 })
             });
         }
+        function deleteCategory() {
+            cleanUpCanvas();
+            const catgs = document.getElementsByClassName("categoria-remove")[0];
+            const selec = document.getElementById("d-categoria");
+            fetch(path + "&f=json&c=produto&t=listar")
+            .then(resp => resp.json())
+            .then(d => {
+                let prods = new Set();
+                d.dados.forEach(e => prods.add(e.categoria));
+                fetch(path + "&f=json&c=categoria&t=listar").then(r => r.json()).then(ans => {
+                    ans.dados.forEach(e => {
+                        if (!prods.has(e.id)){
+                            let div = document.createElement('option');
+                            div.innerHTML = e.nome;
+                            div.value = e.id;
+                            selec.appendChild(div);    
+                        }
+                    })
+                })
+            });
+            catgs.style.display = "flex";
+        }
+        function deletarCategoria() {
+            const product = document.getElementById("d-categoria");
+            fetch(path + "&f=json&c=categoria&t=remover&id=" + product.value)
+            .then(j => j.json())
+            .then(d => {
+                if (d.erro === 0){
+                    alert("Categoria removida com sucesso!");
+                } else{
+                    alert("Erro ao remover");
+                }
+                document.getElementById("op").selectedIndex = "0";
+                changeControl("listar-categorias");
+            })
+        }
         function deleteProduct() {
             cleanUpCanvas();
             const catgs = document.getElementsByClassName("produto-remove")[0];
-            
+            const selec = document.getElementById("d-produto");
+            fetch(path + "&f=json&c=produto&t=listar")
+            .then(resp => resp.json())
+            .then(d => {
+                d.dados.forEach(e => {
+                    let div = document.createElement('option');
+                    div.innerHTML = e.nome;
+                    div.value = e.id;
+                    selec.appendChild(div);
+                })
+            });
             catgs.style.display = "flex";
+        }
+        function deletarProduto() {
+            const product = document.getElementById("d-produto");
+            fetch(path + "&f=json&c=produto&t=remover&id=" + product.value)
+            .then(j => j.json())
+            .then(d => {
+                if (d.erro === 0){
+                    alert("Produto removido com sucesso!");
+                } else{
+                    alert("Erro ao remover");
+                }
+                document.getElementById("op").selectedIndex = "1";
+                changeControl("listar-produtos");
+            })
         }
         function createCard(element, catgs) {
             let card = document.createElement('div');
@@ -271,6 +347,15 @@
                 const element = children[index];
                 element.style.display = "none";
             }
+
+            document.querySelectorAll("select").forEach(e => {
+                if (e.id !== "op"){
+                    let i, L = e.options.length - 1;
+                    for(i = L; i >= 0; i--) {
+                        e.remove(i);
+                    }
+                }
+            })
         }
 
     </script>
