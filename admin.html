@@ -63,6 +63,56 @@
                         </form>
                     </div>
                 </div>
+                <div class="categoria-altera">
+                    <div class="formulario">
+                        <form action="javascript:alterarCategoria()">
+                            <label for="d-categoria">Escolha uma categoria para alterar:</label> 
+                            <br>
+                            <select class="altera-categoria" name="a-categoria" id="a-categoria" required>
+
+                            </select>
+                            <br>
+                            <div id="a-input-categoria">
+                                <label for="a-i-categoria">Nome:</label>
+                                <input type="text" name="a-i-categoria" id="a-i-categoria" required>
+                            </div>
+                            <br>
+                            <input class="submit" type="submit"/>
+                        </form>
+                    </div>
+                </div>
+                <div class="produto-altera">
+                    <div class="produto-form">
+                        <form action="javascript:alterarProduto()">
+                            <label for="idpp">Escolha qual produto alterar:</label>
+                            <select class="i-a-produto" name="idpp" id="idpp" required>
+
+                            </select>
+                            <br>
+                            <label for="nomep">Nome do produto:</label>
+                            <input class="i-a-produto" type="text" name="nomepp" id="nomepp" placeholder="produto">
+                            <br>
+                            <label for="categoriapp">Categoria do produto:</label>
+                            <select class="i-a-produto" name="categoriapp" id="categoriapp">
+
+                            </select>
+                            <br>
+                            <label for="codigopp">Código do produto:</label>
+                            <input class="i-a-produto" type="number" name="codigopp" id="codigopp">
+                            <br>
+                            <label for="descricaopp">Descrição do produto:</label>
+                            <input class="i-a-produto" type="text" name="descricaopp" id="descricaopp" placeholder="descrição">
+                            <br>
+                            <label for="pesopp">Peso do produto:</label>
+                            <input class="i-a-produto" type="number" name="pesopp" id="pesopp">
+                            <br>
+                            <label for="precopp">Preço do produto:</label>
+                            <input class="i-a-produto" type="number" name="precopp" id="precopp">
+                            <br>
+                            <input class="submit" type="submit">
+                        </form>
+                    </div>
+                </div>
                 <div class="categoria-remove">
                     <div class="formulario">
                         <form action="javascript:deletarCategoria()">
@@ -147,6 +197,12 @@
                 case "criar-produto":
                     createProduct();
                     break;
+                case "alterar-categoria":
+                    alterateCategory();
+                    break;
+                case "alterar-produto":
+                    alterateProduct();
+                    break;
                 case "deletar-categoria":
                     deleteCategory();
                     break;
@@ -214,6 +270,96 @@
                     }
                 })
             });
+        }
+       
+        function alterateCategory() {
+            cleanUpCanvas();
+            const catgs = document.getElementsByClassName("categoria-altera")[0];
+            fetch(path + "&f=json&c=categoria&t=listar")
+            .then(resp => resp.json())
+            .then(d => {
+                const dados = d.dados;
+                const selec = document.getElementById("a-categoria");
+                dados.forEach(e => {
+                    let div = document.createElement('option');
+                    div.innerHTML = e.nome;
+                    div.value = e.id;
+                    selec.appendChild(div);
+                })     
+            })
+            catgs.style.display = "flex";
+        }
+        function alterarCategoria() {
+            const id = document.getElementById("a-categoria").value;
+            const nome = document.getElementById("a-i-categoria").value;
+            fetch(path + "&f=json&c=categoria&t=alterar&id=" + id + "&nome=" + nome)
+            .then(r => r.json())
+            .then( d => {
+                if (d.erro === 0){
+                    alert("Categoria alterada com sucesso!");
+                } else{
+                    alert("Erro ao alterar");
+                }
+                document.getElementById("op").selectedIndex = "0";
+                changeControl("listar-categorias");
+            })
+        }
+        function alterateProduct() {
+            cleanUpCanvas();
+            const catgs = document.getElementsByClassName("produto-altera")[0];
+            const produtoSelect = document.getElementById("idpp");
+            const categoriaSelect = document.getElementById("categoriapp");
+            fetch(path + "&f=json&c=categoria&t=listar")
+            .then(resp => resp.json())
+            .then(d => {
+                const dados = d.dados;
+                let div = document.createElement('option');
+                div.innerHTML = "Manter o mesmo";
+                div.value = "nil";
+                div.selected = true;
+                categoriaSelect.appendChild(div)
+                dados.forEach(e => {
+                    let div = document.createElement('option');
+                    div.innerHTML = e.nome;
+                    div.value = e.id;
+                    categoriaSelect.appendChild(div);
+                })
+                fetch(path + "&f=json&c=produto&t=listar")
+                .then(r => r.json())
+                .then(data => {
+                    const dado = data.dados;
+                    dado.forEach(e => {
+                        let div = document.createElement('option');
+                        div.innerHTML = e.nome;
+                        div.value = e.id;
+                        produtoSelect.appendChild(div);
+                    })
+                })
+            })
+            catgs.style.display = "flex";
+        }
+        function alterarProduto() {
+            let str = ""
+            document.querySelectorAll('.i-a-produto').forEach(item =>{
+
+                let size = item.id.length;
+                if (item.value != "nil" && item.value != ""){
+                    str += "&" + item.id.substring(0, size - 2) + "=" + item.value;
+                }
+            })
+            console.log(path + "&f=json&c=produto&t=alterar" + str)
+            fetch(path + "&f=json&c=produto&t=alterar" + str)
+            .then(r => r.json())
+            .then( d => {
+                if (d.erro === 0){
+                    alert("Produto alterado com sucesso!");
+                } else{
+                    alert("Erro ao alterar");
+                }
+                document.getElementById("op").selectedIndex = "1";
+                changeControl("listar-produtos");
+            })
+            
         }
         function deleteCategory() {
             cleanUpCanvas();

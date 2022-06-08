@@ -48,15 +48,7 @@ img {
     margin: 1em;
 }
 
-.create, .produto-remove, .categoria-remove{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    display: none;
-    margin: 2em;
-}
-.produto-create{
+.create, .produto-remove, .categoria-remove, .categoria-altera, .produto-create, .produto-altera{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -90,6 +82,7 @@ img {
     align-items: center;
     justify-content: center;
 }
+
 .formulario{
     height: 250px;
     width: 400px;
