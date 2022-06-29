@@ -12,7 +12,7 @@
     </div>
     <div class=wrapper>
         <div class="body">
-    <form action="">
+    <form action="javascript:send()">
         <div id="centering">
         <table>
             <tr>
@@ -20,7 +20,7 @@
                     <label for="nClient">Nome do Cliente:</label>
                 </td>
                 <td>
-                    <input type="text" name="nClient" id="nClient" placeholder="Cliente">
+                    <input type="text" name="nClient" id="nClient" placeholder="Cliente" required>
                 </td>
             </tr>
             <tr>
@@ -28,7 +28,7 @@
                     <label for="nCPF">CPF:</label>
                 </td>
                 <td>
-                    <input type="text" name="nCPF" id="nCPF" placeholder="xxx.xxx.xxx-xx">
+                    <input type="text" name="nCPF" id="nCPF" placeholder="xxxxxxxxxxx" pattern="[0-9]{11}" title="Apenas numeros" minlength="11" maxlength="11" required>
                 </td>
             </tr>
             <tr>
@@ -36,7 +36,7 @@
                     <label for="nCEP">CEP:</label>
                 </td>
                 <td>
-                    <input type="text" name="nCEP" id="nCEP" placeholder="yyyyy-yyy">
+                    <input type="text" name="nCEP" id="nCEP" placeholder="yyyyyyyy" pattern="[0-9]{8}" title="Apenas numeros" minlength="8" maxlength="8" required>
                 </td>
             </tr>
             <tr>
@@ -44,23 +44,7 @@
                     <label for="nLogradouro">Logradouro:</label>
                 </td>
                 <td>
-                    <input type="text" name="nLogradouro" id="nLogradouro" placeholder="Rua/Avenida Fulano de Tal">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="nNum">Número:</label>
-                </td>
-                <td>
-                    <input type="text" name="nNum" id="nNum" placeholder="000">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="nComp">Complemento:</label>
-                </td>
-                <td>
-                    <input type="text" name="nComp" id="nComp" placeholder="Apartamento 00, Bloco XYZ">
+                    <input type="text" name="nLogradouro" id="nLogradouro" placeholder="Rua/Avenida Fulano de Tal"  required>
                 </td>
             </tr>
             <tr>
@@ -68,7 +52,7 @@
                     <label for="nBairro">Bairro:</label>
                 </td>
                 <td>
-                    <input type="text" name="nBairro" id="nBairro" placeholder="Bairro da Lagoinha">
+                    <input type="text" name="nBairro" id="nBairro" placeholder="Bairro da Lagoinha" required>
                 </td>
             </tr>
             <tr>
@@ -76,7 +60,7 @@
                     <label for="nLoc">Localidade:</label>
                 </td>
                 <td>
-                    <input type="text" name="nLoc" id="nLoc" placeholder="Cidade">
+                    <input type="text" name="nLoc" id="nLoc" placeholder="Cidade" required>
                 </td>
             </tr>
             <tr>
@@ -84,7 +68,7 @@
                     <label for="dUF">Unidade Federativa:</label>
                 </td>
                 <td>
-                    <select name="dUF" id="dUF">
+                    <select name="dUF" id="dUF" required>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
                         <option value="AP">Amapá</option>
@@ -116,6 +100,22 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <label for="nNum">Número:</label>
+                </td>
+                <td>
+                    <input type="text" name="nNum" id="nNum" placeholder="000" >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="nComp">Complemento:</label>
+                </td>
+                <td>
+                    <input type="text" name="nComp" id="nComp" placeholder="Apartamento 00, Bloco XYZ" >
+                </td>
+            </tr>
+            <tr>
                 <td></td>
                 <td><button type="submit">Cadastrar</button></td>
             </tr>
@@ -126,4 +126,28 @@
     </div>
     </div>
 </body>
+    <script>
+        let cep = document.getElementById("nCEP");
+        const loc = document.getElementById("nLoc");
+        const bairro = document.getElementById("nBairro");
+        const logradouro = document.getElementById("nLogradouro");
+        const uf = document.getElementById("dUF");
+        cep.addEventListener('keydown', (event) => {
+            const keyName = event.key;
+            const value = cep.value + keyName;
+        
+            if (value.length == 8){
+                fetch(`https://viacep.com.br/ws/${value}/json`).then(r => r.json()).then(q => {
+                    loc.value = q.localidade || "";
+                    bairro.value = q.bairro || "";
+                    logradouro.value = q.logradouro || "";
+                    uf.value = q.uf || "";
+                })
+            }
+        });
+
+        function send() {
+            alert("here");
+        }
+    </script>
 </html>
