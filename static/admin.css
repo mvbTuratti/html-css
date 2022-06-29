@@ -17,8 +17,22 @@ img {
 .t-header{
     background-image: repeating-linear-gradient(rgba(105, 44, 44, 1), rgb(161, 66, 37));
     display: flex;
+    justify-content: flex-end;
+}
+.t-header .start{
+    margin-right: auto;
+}
+.group {
+    align-self: center;
 }
 
+.group a{
+    text-decoration: none;
+    color: rgba(252, 252, 252, 0.8);
+    text-shadow: 0 1 5px #000;  
+    font-size: 1em;
+    padding: 0.5em;
+}
 .wrapper{
     display: flex;
     flex-direction: column;
