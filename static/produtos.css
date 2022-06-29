@@ -1,7 +1,7 @@
 html, body{
     background-color: rgb(161, 66, 37,0.2);
     margin: 0px;
-    height: 100vh; /* Necessário no mozilla, relacionado com o .wrapper 10vw */
+    
     font-family:  Helvetica, Arial, sans-serif;
 }
 
@@ -16,7 +16,30 @@ html, body{
     align-items: center;
     display: flex;
 }
-
+#tabelaDeProdutos{
+    table-layout: fixed;
+    width: 75%;
+}
+#countCart{
+    display: inline;
+    float: right;
+    margin-top: 65px;
+}
+#shoppingCart{
+    float: right;
+    margin-right: 30px;
+    margin-top: 30px;
+}
+#botoesFinalDeCompra{
+    text-align: right;
+    margin-top: 30px;
+    margin-right: 200px;
+    font-weight: bold;
+    visibility: hidden;
+}
+thead{
+    font-weight: bold;
+}
 @-moz-document url-prefix() {
     button{
         line-height: 1em;
