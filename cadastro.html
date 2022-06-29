@@ -20,7 +20,7 @@
                     <label for="nClient">Nome do Cliente:</label>
                 </td>
                 <td>
-                    <input type="text" name="nClient" id="nClient" placeholder="Cliente" required>
+                    <input type="text" name="nClient" id="nClient" pattern="[a-zA-Z]{3,}" placeholder="Cliente" required>
                 </td>
             </tr>
             <tr>
@@ -44,7 +44,7 @@
                     <label for="nLogradouro">Logradouro:</label>
                 </td>
                 <td>
-                    <input type="text" name="nLogradouro" id="nLogradouro" placeholder="Rua/Avenida Fulano de Tal"  required>
+                    <input type="text" name="nLogradouro" id="nLogradouro" placeholder="Rua/Avenida Fulano de Tal" disabled required>
                 </td>
             </tr>
             <tr>
@@ -52,7 +52,7 @@
                     <label for="nBairro">Bairro:</label>
                 </td>
                 <td>
-                    <input type="text" name="nBairro" id="nBairro" placeholder="Bairro da Lagoinha" required>
+                    <input type="text" name="nBairro" id="nBairro" placeholder="Bairro da Lagoinha" disabled required>
                 </td>
             </tr>
             <tr>
@@ -60,7 +60,7 @@
                     <label for="nLoc">Localidade:</label>
                 </td>
                 <td>
-                    <input type="text" name="nLoc" id="nLoc" placeholder="Cidade" required>
+                    <input type="text" name="nLoc" id="nLoc" placeholder="Cidade" disabled required>
                 </td>
             </tr>
             <tr>
@@ -68,7 +68,7 @@
                     <label for="dUF">Unidade Federativa:</label>
                 </td>
                 <td>
-                    <select name="dUF" id="dUF" required>
+                    <select name="dUF" id="dUF" disabled required>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
                         <option value="AP">Amapá</option>
