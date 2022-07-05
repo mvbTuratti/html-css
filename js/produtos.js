@@ -220,7 +220,7 @@ function changeQuantidade(id,operation){
         let dado = document.getElementById(quantidade)   
         dado.innerHTML = parseInt(dado.innerHTML)+1
 
-        contagemCarrinho = document.getElementById('countCart')
+        let contagemCarrinho = document.getElementById('countCart')
         countCar++
         contagemCarrinho.innerText = countCar.toString()
         for(let i=0;i<valor.length;i++){
@@ -234,7 +234,7 @@ function changeQuantidade(id,operation){
         let quantia = parseInt(dado.innerHTML)-1
         if(quantia){
             dado.innerHTML = quantia
-            contagemCarrinho = document.getElementById('countCart')
+            let contagemCarrinho = document.getElementById('countCart')
             countCar--
             contagemCarrinho.innerText = countCar.toString()
             for(let i=0;i<valor.length;i++){
@@ -256,11 +256,40 @@ function changeQuantidade(id,operation){
 function limpaLinha(id){
     //tira filho
     let rowId = 'row'+id
+    //idTested = id
     let row = document.getElementById(rowId)
     let table = document.getElementById('tabelaDeProdutos')
     table.removeChild(row)
-    console.log(shoppingCart)
+    //console.log(valor)
     //tira do shoppingCart
+    for(let i=0;i<valor.length;i++){
+
+        if(valor[i][2]==id.toString()){
+            let contagemCarrinho = document.getElementById('countCart')
+            countCar-=valor[i][1]
+            contagemCarrinho.innerText = countCar.toString()
+            valor.splice(i,1)
+            break
+        }
+    }
+}
+
+function finalizaCompra(){
+    //window.location.href = 'https://google.com';
+    if(valor.length==0)
+        alert('Carrinho Vazio')
+    else{
+        let urlCompra = "cadastro.html?json="
+        for(let i=0;i<valor.length;i++){
+            urlCompra += valor[i][2]+','+valor[i][1]+','
+        }
+        
+        console.log(urlCompra)
+        //limpa o carrinho
+        valor = []
+        shoppingCart = []
+        countCar = 0
+        window.location.href = urlCompra.slice(0, -1)
+    }
     
-    //recalcula valores e quantidades
 }

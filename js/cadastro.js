@@ -56,7 +56,10 @@ function envioDados(dados) {
                     }
                 });
             });
-            location.href = `${path}&c=boleto&t=listar&id=${id}`;
+            window.open(
+                `${path}&c=boleto&t=listar&id=${id}`,
+                '_blank'
+            )
         }
     });
     
