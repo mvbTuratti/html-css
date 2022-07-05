@@ -281,7 +281,7 @@ function finalizaCompra(){
     else{
         let urlCompra = "cadastro.html?json="
         for(let i=0;i<valor.length;i++){
-            urlCompra += valor[i][2]+','+valor[i][1]+','
+            urlCompra += valor[i][2]+','+valor[i][1]+';'
         }
         
         console.log(urlCompra)
