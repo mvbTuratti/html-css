@@ -42,14 +42,23 @@ function buscaPedido(){
             div = document.createElement('div')
             blocoPedido.appendChild(div)
             span = document.createElement('span')
-            span.innerHTML = '<b>CPF: </b>' + pedido.cpf
+            let splited = pedido.cpf.split('')
+            //console.log(splited)
+            span.innerHTML = '<b>CPF: </b>' + splited[0]+splited[1]+splited[2]+'.'+
+                                splited[3]+splited[4]+splited[5]+'.'+
+                                splited[6]+splited[7]+splited[8]+'-'+
+                                splited[9]+splited[10]
             div.appendChild(span)
             
             //add cep
             div = document.createElement('div')
             blocoPedido.appendChild(div)
             span = document.createElement('span')
-            span.innerHTML = '<b>CEP: </b>' + pedido.cep
+            splited = pedido.cep.split('')
+            if(splited.length<8)
+                span.innerHTML = '<b>CEP: </b>0' + splited[0]+splited[1]+splited[2]+splited[3]+'-'+splited[4]+splited[5]+splited[6]
+            else
+                span.innerHTML = '<b>CEP: </b>' + splited[0]+splited[1]+splited[2]+splited[3]+splited[4]+'-'+splited[5]+splited[6]+splited[7]
             div.appendChild(span)
 
             //add rua
@@ -146,7 +155,7 @@ function buscaPedido(){
             
                         //insere preco
                         td = document.createElement('td')
-                        td.innerText = dado.preco
+                        td.innerText = dado.preco.replace(".", ",")
                         row.appendChild(td)
             
                         //insere quantidade
