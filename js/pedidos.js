@@ -151,7 +151,7 @@ function buscaPedido(){
             
                         //insere quantidade
                         td = document.createElement('td')
-                        td.innerText = quantidade
+                        td.innerText = parseInt(quantidade)
                         row.appendChild(td)
                         table.appendChild(row)
                     })
