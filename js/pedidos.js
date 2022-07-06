@@ -100,6 +100,7 @@ function buscaPedido(){
                 console.log(d.dados)
                 //cria tabela
                 let table = document.createElement('table')
+                table.setAttribute('id','tabelaDeProdutos')
                 blocoPedido.appendChild(table)
 
                 //cria header
@@ -110,6 +111,7 @@ function buscaPedido(){
             
                 td = document.createElement('td')
                 td.innerText = 'Produto'
+                td.setAttribute('colspan','2')
                 header.appendChild(td)
 
                 td = document.createElement('td')
@@ -139,6 +141,7 @@ function buscaPedido(){
                         //insere nome
                         td = document.createElement('td')
                         td.innerText = dado.nome
+                        td.setAttribute('colspan','2')
                         row.appendChild(td)
             
                         //insere preco
