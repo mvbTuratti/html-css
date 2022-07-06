@@ -46,6 +46,7 @@ function envioDados(dados) {
             alert("Houve um erro na hora de efetuar o cadastro!")
         } else{
             let id = i.dados.id;
+            alert("Seu pedido tem número: " + id)
             dados.forEach(element => {
                 dado = element.split(",");
                 fetch(`${path}&f=json&c=item&t=inserir&id=${getRandomInt(0,9999)}&pedido=${id}&produto=${dado[0]}&qtd=${dado[1]}`)
