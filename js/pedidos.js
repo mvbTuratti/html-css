@@ -155,7 +155,7 @@ function buscaPedido(){
             
                         //insere preco
                         td = document.createElement('td')
-                        td.innerText = dado.preco.replace(".", ",")
+                        td.innerText = 'R$ ' + dado.preco.replace(".", ",")
                         row.appendChild(td)
             
                         //insere quantidade
