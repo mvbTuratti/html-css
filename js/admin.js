@@ -113,11 +113,20 @@ function cadastroProduto() {
         let str = ""
         document.querySelectorAll('.input-produto').forEach(item =>{
             let size = item.id.length;
-            str += "&" + item.id.substring(0, size - 1) + "=" + item.value;
+            let itemID = item.id.substring(0, size - 1);
+            let value = item.value;
+            if (itemID === "peso" || itemID === "preco"){
+                let msv = value.split(",")[0]
+                let msvFormatted = msv.replaceAll(".", "");
+                let remainder = value.split(",")[1] || "00"
+                value = msvFormatted + "." + remainder;
+            }
+            str += "&" + itemID + "=" + value;
         })
         fetch(path + "&f=json&c=produto&t=inserir" + str).then(r => r.json()).then(resultado => {
+            console.log(resultado)
             if (resultado.erro === 0){
-                alert("Categoria cadastrada com sucesso!");
+                alert("Produto cadastrado com sucesso!");
             } else{
                 alert("Erro ao cadastrar");
             }
@@ -196,8 +205,17 @@ function alterarProduto() {
     document.querySelectorAll('.i-a-produto').forEach(item =>{
 
         let size = item.id.length;
+        
         if (item.value != "nil" && item.value != ""){
-            str += "&" + item.id.substring(0, size - 2) + "=" + item.value;
+            let itemID = item.id.substring(0, size - 2);
+            let value = item.value;
+            if (itemID === "peso" || itemID === "preco"){
+                let msv = value.split(",")[0]
+                let msvFormatted = msv.replaceAll(".", "");
+                let remainder = value.split(",")[1] || "00"
+                value = msvFormatted + "." + remainder;
+            }
+            str += "&" + itemID + "=" + value;
         }
     })
     console.log(path + "&f=json&c=produto&t=alterar" + str)
