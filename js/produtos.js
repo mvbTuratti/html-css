@@ -62,7 +62,7 @@ function getProdutos(categoria = null){
             //insere imagem
             td = document.createElement('td')
             let urlImg = d.dados[i].imagem
-            td.innerHTML = '<img src="' + urlImg + '"ondblclick="addCart(this.id)" alt="" height="120px" draggable="true" ondragstart="getId(event)" id='+d.dados[i].id.toString()+ '></img>'
+            td.innerHTML = '<img class="img-brd" src="' + urlImg + '"ondblclick="addCart(this.id)" alt="" height="120px" draggable="true" ondragstart="getId(event)" id='+d.dados[i].id.toString()+ '></img>'
             row.appendChild(td)
 
             //insere nome
@@ -73,7 +73,8 @@ function getProdutos(categoria = null){
 
             //insere preco
             td = document.createElement('td')
-            td.innerText = "R$ " + d.dados[i].preco
+            let values = d.dados[i].preco.replace(".", ",");
+            td.innerText = "R$ " + values
             row.appendChild(td)
 
             //insere descrição

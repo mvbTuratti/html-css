@@ -19,23 +19,29 @@
             <a href="./admin.html">Administração</a>
         </div>
     </div>
-    <img id="shoppingCart" draggable="false" onclick="abreCarrinho()" ondragover="allowDrop(event)" ondrop="dropado(event)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAACjklEQVRoge2Zv2sUQRTHPxsD/ujSqWcQgkhSWIjYeIKWBmtJFbEJVtr5Z9hqYaFg5FCx0dikMVGxsxBSaGMRFRU9NNj4KzmLN8vunfvjZubN7p74gWGXvXkz3zf73szOHPyneZwG3gK9gvIFeAycA6J6ZJbzjmInBssiDXXmDYnI9YzfI2AvsAB8M/XOVqbOglnEmXXgVEndBcSR56FFhWY78BlxZqZmLX2MWdb/ASyb+5PKWrywdQRg1VxPaAqpg2kktD7S0NnLhnjKnq5bSIxLaAE8MdfG5ImrI/9MnswgofWeEc+TCPhAw/LElTvYfaOFKI9iMa45ArDiYavFZHzj48hqeZXg3NRoJEIWxbrCaguYisX4vJEeyXriQhs47mG/Arz2sO/jAu4jGuNqP6/lBMChmhzZAHZpOhIBn2pw5NqgEJ8ciUX45Ikr10M0epHyETxm0V67pK1XZHwW+b4RGG49semnrO4N+kNTjTGSfXzoHNkktZoPivBlC3iq0M4wLCMnPn+h4QhU97kSJMnTHCZ8aHWBHXkCxpUceYGcD09Y2LSx25R1gO82oly5j/sqP0w5UtS5Vo5A2DxZo+SYVtORkBut4EmeZhuSJ9oh9QvYXda55hvZRH896QFXkIOOSrlkOr9adcfaHEUceVm3EF/GkU1PD/mXqzI0cwTgN8k0PKvcduWcR97IM0b8OHWCJLwuA/uRqXkkmUPCTGstqfUw8EyOKJfyE9hTrfyEW0bEA6BlypJ51smx6RTYLAbWm0v8t0Mr9WySZG+RRbfA5mtRZ9rTb5qd5po1c+Ulf7w/atRsdw8ZySVgnykPzbO7ijbBOUj26UoXOKBoUwkt4Dayrmwgo1omyMWGP64Ls9o5uLiXAAAAAElFTkSuQmCC"><p id="countCart">0</p></img>
-    <div class="filters">
-        <h2>Selecione a categoria</h2>
-        <select name="categoria" id="categoriaSelector" onchange="getProdutos(this.value)">
-            <option value="" disabled selected>Selecione</option>
-            <option value="">Todas</option>
-        </select>
-    </div>
-    <div class=wrapper>
-        <table id="tabelaDeProdutos">
-        </table>
-        <br>
-    </div>
-    <div id="botoesFinalDeCompra">
-        <span>Total da Compra: R$ </span> <span id="totalDaCompraDinheiros"></span>
-        <br>
-        <button onclick="finalizaCompra()">Finalizar</button>
+    <div class="top-level">
+        <div class="wrapper-custom">
+            <div class="sticky">
+                <img id="shoppingCart" draggable="false" onclick="abreCarrinho()" ondragover="allowDrop(event)" ondrop="dropado(event)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAACjklEQVRoge2Zv2sUQRTHPxsD/ujSqWcQgkhSWIjYeIKWBmtJFbEJVtr5Z9hqYaFg5FCx0dikMVGxsxBSaGMRFRU9NNj4KzmLN8vunfvjZubN7p74gWGXvXkz3zf73szOHPyneZwG3gK9gvIFeAycA6J6ZJbzjmInBssiDXXmDYnI9YzfI2AvsAB8M/XOVqbOglnEmXXgVEndBcSR56FFhWY78BlxZqZmLX2MWdb/ASyb+5PKWrywdQRg1VxPaAqpg2kktD7S0NnLhnjKnq5bSIxLaAE8MdfG5ImrI/9MnswgofWeEc+TCPhAw/LElTvYfaOFKI9iMa45ArDiYavFZHzj48hqeZXg3NRoJEIWxbrCaguYisX4vJEeyXriQhs47mG/Arz2sO/jAu4jGuNqP6/lBMChmhzZAHZpOhIBn2pw5NqgEJ8ciUX45Ikr10M0epHyETxm0V67pK1XZHwW+b4RGG49semnrO4N+kNTjTGSfXzoHNkktZoPivBlC3iq0M4wLCMnPn+h4QhU97kSJMnTHCZ8aHWBHXkCxpUceYGcD09Y2LSx25R1gO82oly5j/sqP0w5UtS5Vo5A2DxZo+SYVtORkBut4EmeZhuSJ9oh9QvYXda55hvZRH896QFXkIOOSrlkOr9adcfaHEUceVm3EF/GkU1PD/mXqzI0cwTgN8k0PKvcduWcR97IM0b8OHWCJLwuA/uRqXkkmUPCTGstqfUw8EyOKJfyE9hTrfyEW0bEA6BlypJ51smx6RTYLAbWm0v8t0Mr9WySZG+RRbfA5mtRZ9rTb5qd5po1c+Ulf7w/atRsdw8ZySVgnykPzbO7ijbBOUj26UoXOKBoUwkt4Dayrmwgo1omyMWGP64Ls9o5uLiXAAAAAElFTkSuQmCC"><p id="countCart">0</p></img>
+                <div class="filters">
+                    <h2>Selecione a categoria</h2>
+                    <select name="categoria" id="categoriaSelector" onchange="getProdutos(this.value)">
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+        </div>
+            <div class=wrapper>
+                <table id="tabelaDeProdutos">
+                </table>
+                <br>
+            </div>
+            <div id="botoesFinalDeCompra">
+                <span>Total da Compra: R$ </span> <span id="totalDaCompraDinheiros"></span>
+                <br>
+                <button onclick="finalizaCompra()">Finalizar</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>

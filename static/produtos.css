@@ -1,7 +1,7 @@
 html, body{
     background-color: rgb(161, 66, 37,0.2);
     margin: 0px;
-    
+    height: 100%;
     font-family:  Helvetica, Arial, sans-serif;
 }
 
@@ -15,8 +15,28 @@ html, body{
 }
 .group {
     align-self: center;
+    
 }
 
+.top-level{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+.wrapper-custom{
+    min-width: 450px;
+    width: 90vw;
+    height: 550px;
+    background-image: repeating-linear-gradient(rgba(250, 252, 255, 0.4), rgba(255, 255, 255, 0.7));
+    border: solid 1px rgb(102, 102, 102);
+    border-radius: 10px;
+    box-shadow: 4px 4px 2px 1px rgba(0, 0, 255, .2);
+    
+    overflow: scroll;
+    overflow-x: hidden; 
+    margin-bottom: 2em;
+}
 .group a{
     text-decoration: none;
     color: rgba(252, 252, 252, 0.8);
@@ -51,8 +71,26 @@ html, body{
     font-weight: bold;
     visibility: hidden;
 }
+.sticky{
+    position: fixed;
+    width: inherit;
+    background-image: repeating-linear-gradient(rgba(105, 44, 44, 1), rgb(161, 66, 37));
+    border: solid  1px rgb(102, 102, 102);
+    border-radius: 10px 10px 0px 0px;
+}
+.img-brd{
+    border: solid 1px rgb(102, 102, 102);
+}
+
+.filters{
+    padding-left: 2em;
+}
 thead{
     font-weight: bold;
+}
+h2{
+    color: #fff;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 @-moz-document url-prefix() {
     button{
