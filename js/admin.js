@@ -166,6 +166,7 @@ function alterarCategoria() {
         changeControl("listar-categorias");
     })
 }
+
 function alterateProduct() {
     cleanUpCanvas();
     const catgs = document.getElementsByClassName("produto-altera")[0];

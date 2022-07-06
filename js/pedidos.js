@@ -11,6 +11,7 @@ function buscaPedido(){
     console.log(url)
     //busca o pedido
     fetch(url).then(r => r.json()).then(d => {
+        console.log(d)
         for(let i = 0; i<d.dados.length;i++){
             if(d.dados[i].id == pedidoId.toString()){
                 pedido = d.dados[i]
