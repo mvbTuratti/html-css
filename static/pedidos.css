@@ -1,0 +1,22 @@
+html, body{
+    background-color: rgb(161, 66, 37,0.2);
+    margin: 0px;
+    height: 100vh; /* Necessário no mozilla, relacionado com o .wrapper 10vw */
+    font-family:  Helvetica, Arial, sans-serif;
+}
+img {
+    border-radius: 50%;
+    height: 5em;
+    width: 5em;
+    border: solid 1.5px rgb(102, 102, 102);
+    box-shadow: -0.5px -0.5px 0.5px 0.5px rgba(0, 0, 255, .2);;
+}
+.t-header{
+    background-image: repeating-linear-gradient(rgba(105, 44, 44, 1), rgb(161, 66, 37));
+    display: flex;
+    justify-content: flex-end;
+}
+.t-header .start{
+    margin-right: auto;
+}
+
